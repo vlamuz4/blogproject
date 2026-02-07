@@ -1,0 +1,18 @@
+<h1>{{ post.title }}</h1>
+<p>{{ post.text }}</p>
+
+<h2>Коментарі</h2>
+<ul>
+{% for c in comments %}
+    <li><b>{{ c.author.username }}</b>: {{ c.text }}</li>
+{% empty %}
+    <li>Немає коментарів</li>
+{% endfor %}
+</ul>
+
+<h3>Додати коментар</h3>
+<form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button>Надіслати</button>
+</form>
